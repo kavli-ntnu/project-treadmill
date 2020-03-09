@@ -50,7 +50,7 @@ Configure the ***dj_local_conf.json***:
     "custom":
     {
         "database.prefix": "group_shared_",
-        "project.db.prefix": "group_proj_",
+        "project.db.prefix": "some_prefix_for_secondary_tracking_shema",
         "mlims.database": "prod_mlims_data",
         "flask.database": "group_shared_flask",
         "drive_config":
