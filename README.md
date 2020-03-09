@@ -56,7 +56,7 @@ Configure the ***dj_local_conf.json***:
         "drive_config":
         {
           "local": "/data",
-          "network": "mnt/N"
+          "network": "/mnt/N"
         }
 	}
 }
