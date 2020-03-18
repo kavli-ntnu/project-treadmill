@@ -109,4 +109,9 @@ Make sure to specify the ***project.db.prefix*** correctly (if you're unsure, co
 
 For database credentials, or access key and secret key to the *ephys stores*, contact your administrator.
 
+### Step 5 - Jupyter Notebook
+At this point the setup/installation of this pipeline is completed. Users can start browsing the example jupyter notebooks for demo usage of the pipeline.
 
+    jupyter notebook
+    
+    
