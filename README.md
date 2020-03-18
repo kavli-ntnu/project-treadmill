@@ -3,11 +3,54 @@ Repository for *Treadmill tracking* as part of the ***Secondary Tracking***.
 
 The *Treadmill* tracking data are extracted from Optitrack file (opti.csv) - from a column named "Treadmill".
 
-Requires installation of the Moser ephys pipeline - ***dj-elphys*** repo:
+## Setup and installation
+
+### Step 1 - cloning the ***project-treadmill***
+The first step for new users is to fork the ***project-treadmill*** from kvali GitHub repository ([here](https://github.com/kavli-ntnu/project-treadmill)) to their own GitHub account
+
+Then users can clone the ***project-treadmill*** from their github fork to the local computer:
+
++ Launch a new terminal and change directory to where you want to clone the repository to
+    ```
+    cd C:/Projects
+    ```
++ Clone the repository:
+    ```
+    clone https://github.com/your_github_username/project-treadmill.git 
+    ```
++ Change directory to ***project-treadmill***
+    ```
+    cd project-treadmill
+    ```
+
+### Step 2 - setup virtual environment
+It is highly recommended (though not strictly required) to create a virtual environment to run the pipeline.
++ To create a new virtual environment named ***venv***:
+    ```
+    virtualenv venv
+    ```
++ To activated the virtual environment:
+    + On Windows:
+        ```
+        .\venv\Scripts\activate
+        ```
+    + On Linux/macOS:
+        ```
+        source venv/bin/activate
+        ```
+*note: if `virtualenv` not yet installed, do `pip install --user virtualenv`*
+
+### Step 3 - Installation of the Moser ephys pipeline
+Installing (or updating) the ***dj-elphys*** repository:
 
     pip install git+https://github.com/kavli-ntnu/dj-elphys.git
     
-Configure the ***dj_local_conf.json***:
+To update to the latest version:
+  
+    pip install git+https://github.com/kavli-ntnu/dj-elphys.git --upgrade
+    
+### Step 4 - Configure the ***dj_local_conf.json***:
+In the ***project-treadmill*** directory, create a new json file named ***dj_local_conf.json*** and add the following content:
 
 ```json
 {
@@ -50,7 +93,7 @@ Configure the ***dj_local_conf.json***:
     "custom":
     {
         "database.prefix": "group_shared_",
-        "project.db.prefix": "some_prefix_for_secondary_tracking_shema",
+        "project.db.prefix": "project_",
         "mlims.database": "prod_mlims_data",
         "flask.database": "group_shared_flask",
         "drive_config":
@@ -65,4 +108,5 @@ Configure the ***dj_local_conf.json***:
 Make sure to specify the ***project.db.prefix*** correctly (if you're unsure, contact the pipeline administrator)
 
 For database credentials, or access key and secret key to the *ephys stores*, contact your administrator.
+
 
