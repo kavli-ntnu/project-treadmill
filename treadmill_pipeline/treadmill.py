@@ -1,12 +1,12 @@
 import numpy as np
 import datajoint as dj
 
-from secondary_tracking import project_database_prefix
+from treadmill_pipeline import project_database_prefix
 from ephys.utilities import ingestion, time_sync
 from ephys import get_schema_name
 
 
-schema = dj.schema(project_database_prefix + 'secondary_tracking')
+schema = dj.schema(project_database_prefix + 'treadmill_pipeline')
 
 reference = dj.create_virtual_module('reference', get_schema_name('reference'))
 acquisition = dj.create_virtual_module('acquisition', get_schema_name('acquisition'))
@@ -15,12 +15,12 @@ behavior = dj.create_virtual_module('behavior', get_schema_name('behavior'))
 
 @schema
 class TreadmillTracking(dj.Imported):
-    definition = """  # session-level tracking data from the treadmill(s) employed in the experiment
+    definition = """  # session-level tracking data from the treadmill_pipeline(s) employed in the experiment
     -> acquisition.Session
-    treadmill_tracking_time:          datetime        # start time of this treadmill speed recording
+    treadmill_tracking_time:          datetime        # start time of this treadmill_pipeline speed recording
     ---
-    treadmill_tracking_name:  varchar(40)         # user-assign name of this treadmill tracking (e.g. 27032019laserSess1)
-    treadmill_timestamps:    blob@ephys_store    # (s) timestamps of the treadmill speed samples
+    treadmill_tracking_name:  varchar(40)         # user-assign name of this treadmill_pipeline tracking (e.g. 27032019laserSess1)
+    treadmill_timestamps:    blob@ephys_store    # (s) timestamps of the treadmill_pipeline speed samples
     """
 
     class TreadmillSync(dj.Part):
@@ -39,7 +39,7 @@ class TreadmillTracking(dj.Imported):
         -> master
         treadmill_name: varchar(32)
         ---
-        treadmill_speed: blob@ephys_store    # (s) treadmill speed at each timestamp
+        treadmill_speed: blob@ephys_store    # (s) treadmill_pipeline speed at each timestamp
         """
 
     key_source = acquisition.Session & acquisition.Recording  # wait for recording to be ingested first before tracking
@@ -84,7 +84,7 @@ class TreadmillTracking(dj.Imported):
                 self.Speed.insert1([dict(treadmill_key, treadmill_name=k, treadmill_speed=v['speed'])
                                     for k, v in secondary_data['Treadmill'].items()])
 
-            print(f'Insert {len(opti_list)} treadmill tracking(s): {input_dir.stem}')
+            print(f'Insert {len(opti_list)} treadmill_pipeline tracking(s): {input_dir.stem}')
 
         else:
             raise NotImplementedError(f'Treadmill Tracking ingestion for recording type {rec_type} not implemented')

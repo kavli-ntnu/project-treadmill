@@ -1,6 +1,6 @@
 import time
 from . import default_settings
-from secondary_tracking import treadmill
+from treadmill_pipeline import treadmill
 
 
 limit = 3300  # 55 minutes in seconds
