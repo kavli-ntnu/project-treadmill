@@ -1,5 +1,5 @@
 import time
-from . import default_settings
+from populate import default_settings
 from treadmill_pipeline import treadmill
 
 
