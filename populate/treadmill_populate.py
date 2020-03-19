@@ -3,7 +3,7 @@ from populate import default_settings
 from treadmill_pipeline import treadmill
 
 
-limit = 3300  # 55 minutes in seconds
+limit = 60 * 55  # 55 minutes in seconds
 
 
 def main():
